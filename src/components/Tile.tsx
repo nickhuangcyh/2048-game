@@ -4,9 +4,10 @@ import './Tile.css';
 
 interface TileProps {
   tile: TileType;
+  size: number;
 }
 
-const Tile: React.FC<TileProps> = ({ tile }) => {
+const Tile: React.FC<TileProps> = ({ tile, size }) => {
   const { value, position, mergedFrom } = tile;
   const [row, col] = position;
 
@@ -15,9 +16,9 @@ const Tile: React.FC<TileProps> = ({ tile }) => {
   const mergedClass = mergedFrom ? 'tile-merged' : '';
   
   const style: React.CSSProperties = {
-    // Each tile is 100px + 15px gap
-    transform: `translate(${col * 115}px, ${row * 115}px)`,
-  };
+    '--tile-size': `${100 / size}%`,
+    transform: `translate(calc(var(--tile-size) * ${col}), calc(var(--tile-size) * ${row}))`,
+  } as React.CSSProperties;
 
   return (
     <div className={`tile ${tileValueClass} ${mergedClass}`} style={style}>

@@ -1,15 +1,17 @@
 .tile {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: var(--tile-size);
+  height: var(--tile-size);
   transition: transform 100ms ease-in-out;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tile-inner {
-  width: 90%;
-  height: 90%;
-  margin: 5%;
+  width: calc(100% - var(--grid-gap, 15px));
+  height: calc(100% - var(--grid-gap, 15px));
   border-radius: 3px;
   background: #eee4da;
   text-align: center;

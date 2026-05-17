@@ -19,13 +19,13 @@ const GameBoard: React.FC<GameBoardProps> = ({ tiles, size }) => {
   };
 
   return (
-    <div className="game-container">
+    <div className="game-container" style={{ '--grid-size': size } as React.CSSProperties}>
       <div className="grid-container">
         {renderBackgroundCells()}
       </div>
       <div className="tile-container">
         {tiles.map((tile) => (
-          <Tile key={tile.id} tile={tile} />
+          <Tile key={tile.id} tile={tile} size={size} />
         ))}
       </div>
     </div>
