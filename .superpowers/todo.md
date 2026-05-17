@@ -1,6 +1,0 @@
-- [x] Task 1: 專案初始化與建構環境
-- [x] Task 2: 定義核心類型與遊戲邏輯 (Game Engine)
-- [x] Task 3: 實作移動與合併邏輯
-- [x] Task 4: 建立 GameBoard 與 Tile 組件 (UI 層)
-- [x] Task 5: 輸入監聽與狀態整合 (Hooks)
-- [ ] Task 6: 分數持久化與 UI 優化
