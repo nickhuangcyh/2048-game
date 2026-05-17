@@ -1,7 +1,6 @@
 :root {
-  --field-size: 400px;
-  --grid-gap: 15px;
-  --cell-size: 100px;
+  --field-size: min(90vw, 500px);
+  --grid-gap: min(2vw, 15px);
 }
 
 .game-container {
@@ -13,7 +12,7 @@
   border-radius: 6px;
   width: var(--field-size);
   height: var(--field-size);
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .grid-container {
@@ -23,7 +22,9 @@
   grid-gap: var(--grid-gap);
   width: 100%;
   height: 100%;
+  background: #bbada0;
 }
+
 
 .grid-cell {
   width: 100%;

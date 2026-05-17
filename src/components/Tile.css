@@ -20,8 +20,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 35px;
+  font-size: 55px;
   color: #776e65;
+  transition: all 100ms ease-in-out;
 }
 
 /* Colors for different tile values */
@@ -31,12 +32,16 @@
 .tile-16 .tile-inner { background: #f59563; color: #f9f6f2; }
 .tile-32 .tile-inner { background: #f67c5f; color: #f9f6f2; }
 .tile-64 .tile-inner { background: #f65e3b; color: #f9f6f2; }
-.tile-128 .tile-inner { background: #edcf72; color: #f9f6f2; font-size: 30px; }
-.tile-256 .tile-inner { background: #edcc61; color: #f9f6f2; font-size: 30px; }
-.tile-512 .tile-inner { background: #edc850; color: #f9f6f2; font-size: 30px; }
-.tile-1024 .tile-inner { background: #edc53f; color: #f9f6f2; font-size: 25px; }
-.tile-2048 .tile-inner { background: #edc22e; color: #f9f6f2; font-size: 25px; }
-.tile-super .tile-inner { background: #3c3a32; color: #f9f6f2; font-size: 20px; }
+.tile-128 .tile-inner { background: #edcf72; color: #f9f6f2; font-size: 45px; }
+.tile-256 .tile-inner { background: #edcc61; color: #f9f6f2; font-size: 45px; }
+.tile-512 .tile-inner { background: #edc850; color: #f9f6f2; font-size: 45px; }
+.tile-1024 .tile-inner { background: #edc53f; color: #f9f6f2; font-size: 35px; }
+.tile-2048 .tile-inner { background: #edc22e; color: #f9f6f2; font-size: 35px; }
+
+/* Values above 2048 */
+.tile-4096 .tile-inner { background: #3c3a32; color: #f9f6f2; font-size: 30px; }
+.tile-8192 .tile-inner { background: #3c3a32; color: #f9f6f2; font-size: 30px; }
+.tile-super .tile-inner { background: #3c3a32; color: #f9f6f2; font-size: 25px; }
 
 @keyframes appear {
   0% { opacity: 0; transform: scale(0); }
@@ -56,3 +61,17 @@
 .tile-merged .tile-inner {
   animation: pop 200ms ease-in-out;
 }
+
+/* Adjust font sizes for mobile or smaller boards */
+@media screen and (max-width: 520px) {
+  .tile-inner {
+    font-size: 35px;
+  }
+  .tile-128 .tile-inner, .tile-256 .tile-inner, .tile-512 .tile-inner {
+    font-size: 25px;
+  }
+  .tile-1024 .tile-inner, .tile-2048 .tile-inner {
+    font-size: 20px;
+  }
+}
+

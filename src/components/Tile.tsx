@@ -12,7 +12,7 @@ const Tile: React.FC<TileProps> = ({ tile, size }) => {
   const [row, col] = position;
 
   // Class names for different tile values to handle styling
-  const tileValueClass = `tile-${value}`;
+  const tileValueClass = value <= 2048 ? `tile-${value}` : 'tile-super';
   const mergedClass = mergedFrom ? 'tile-merged' : '';
   
   const style: React.CSSProperties = {
