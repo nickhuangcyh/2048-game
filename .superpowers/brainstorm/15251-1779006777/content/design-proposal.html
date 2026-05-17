@@ -1,0 +1,49 @@
+<h2>2048 Game Design</h2>
+<p class="subtitle">React + TypeScript + Vite | Classic Style | Multi-Size Support</p>
+
+<div class="section">
+  <h3>Architecture & Tech Stack</h3>
+  <ul>
+    <li><strong>Framework:</strong> React with TypeScript for type safety.</li>
+    <li><strong>Build Tool:</strong> Vite for fast development and bundling.</li>
+    <li><strong>Styling:</strong> Vanilla CSS (or CSS Modules) for the classic look and optimized animations.</li>
+    <li><strong>State Management:</strong> React <code>useReducer</code> or <code>useState</code> for game logic (grid state, score, status).</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h3>Key Features</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <h4>Core Gameplay</h4>
+        <p>Merging tiles, spawning '2' or '4', and tracking movements.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4>Score System</h4>
+        <p>Real-time score tracking and High Score persistence in <code>localStorage</code>.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4>Responsive Inputs</h4>
+        <p>Keyboard (Arrows/WASD) and Touch Swipes for mobile users.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h4>Animations</h4>
+        <p>Smooth tile sliding and merging effects using CSS Transitions.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Game Logic Approach</h3>
+  <p>The grid will be represented as a 1D or 2D array. Each tile will have a unique ID to maintain identity across re-renders, enabling smooth CSS transitions from one position to another.</p>
+</div>
+
+<p>Does this architecture and feature set align with your vision? If so, I will proceed to write the detailed design document.</p>
