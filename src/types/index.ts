@@ -13,3 +13,5 @@ export interface GameState {
   size: number;
   status: 'playing' | 'won' | 'over';
 }
+
+export type Direction = 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';

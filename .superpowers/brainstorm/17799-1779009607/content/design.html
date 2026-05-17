@@ -1,0 +1,40 @@
+<h2>Design: Move and Merge Logic</h2>
+<p class="subtitle">Rotation-based approach for directional movement</p>
+
+<div class="section">
+  <h3>1. Core Move Function (`moveLeft`)</h3>
+  <p>For each row, we'll perform these steps:</p>
+  <ul>
+    <li>Filter out empty cells to get a list of tiles.</li>
+    <li>Iterate through the list and merge adjacent tiles with the same value.</li>
+    <li>When merging: Create a new tile, set <code>mergedFrom</code>, and increment the score.</li>
+    <li>Fill the remaining spots in the row with empty cells (represented by the absence of a tile at that position).</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h3>2. Handling Other Directions</h3>
+  <p>Instead of writing logic for Up, Down, and Right, we will:</p>
+  <ul>
+    <li>Rotate the board so the target direction becomes "Left".</li>
+    <li>Apply <code>moveLeft</code> logic.</li>
+    <li>Rotate the board back to its original orientation.</li>
+  </ul>
+  <div class="mockup">
+    <div class="mockup-header">Rotation Mapping</div>
+    <div class="mockup-body">
+      <p>Move Right: Rotate 180&deg; -> Move Left -> Rotate 180&deg;</p>
+      <p>Move Up: Rotate 270&deg; -> Move Left -> Rotate 90&deg;</p>
+      <p>Move Down: Rotate 90&deg; -> Move Left -> Rotate 270&deg;</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>3. Game State Updates</h3>
+  <ul>
+    <li><strong>Won:</strong> If any tile reaches 2048.</li>
+    <li><strong>Over:</strong> If no empty cells remain AND no adjacent tiles can be merged.</li>
+    <li><strong>New Tile:</strong> A new random tile (2 or 4) is added after every successful move.</li>
+  </ul>
+</div>
