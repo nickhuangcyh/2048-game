@@ -1,39 +1,66 @@
-import { useState, useEffect } from 'react'
 import GameBoard from './components/GameBoard'
-import { initGame } from './logic/gameLogic'
-import type { GameState } from './types'
+import { useGame } from './hooks/useGame'
+import { useMoveListeners } from './hooks/useMoveListeners'
 import './App.css'
 
 function App() {
-  const [size, setSize] = useState(4);
-  const [gameState, setGameState] = useState<GameState>(() => initGame(size));
+  const { state, move, restart, changeSize } = useGame(4);
 
-  useEffect(() => {
-    setGameState(initGame(size));
-  }, [size]);
-
-  const resetGame = () => {
-    setGameState(initGame(size));
-  };
+  useMoveListeners(move);
 
   return (
     <div className="app">
       <div className="header">
         <h1 className="title">2048</h1>
-        <div className="score-container">
-          <span className="score-label">Score</span>
-          <div className="score-value">{gameState.score}</div>
+        <div className="scores-wrapper">
+          <div className="score-container">
+            <span className="score-label">Score</span>
+            <div className="score-value">{state.score}</div>
+          </div>
+          <div className="score-container">
+            <span className="score-label">Best</span>
+            <div className="score-value">{state.bestScore}</div>
+          </div>
         </div>
       </div>
 
       <div className="controls">
-        <button onClick={() => setSize(3)}>3x3</button>
-        <button onClick={() => setSize(4)}>4x4</button>
-        <button onClick={() => setSize(5)}>5x5</button>
-        <button onClick={resetGame}>New Game</button>
+        <div className="size-buttons">
+          <button 
+            className={state.size === 3 ? 'active' : ''} 
+            onClick={() => changeSize(3)}
+          >3x3</button>
+          <button 
+            className={state.size === 4 ? 'active' : ''} 
+            onClick={() => changeSize(4)}
+          >4x4</button>
+          <button 
+            className={state.size === 5 ? 'active' : ''} 
+            onClick={() => changeSize(5)}
+          >5x5</button>
+        </div>
+        <button className="restart-button" onClick={restart}>New Game</button>
       </div>
-      
-      <GameBoard tiles={gameState.tiles} size={size} />
+
+      <div className="board-container">
+        <GameBoard tiles={state.tiles} size={state.size} />
+        {state.status === 'won' && (
+          <div className="game-message game-won">
+            <p>You win!</p>
+            <button onClick={restart}>Keep going</button>
+          </div>
+        )}
+        {state.status === 'lost' && (
+          <div className="game-message game-over">
+            <p>Game over!</p>
+            <button onClick={restart}>Try again</button>
+          </div>
+        )}
+      </div>
+
+      <p className="game-explanation">
+        <strong>HOW TO PLAY:</strong> Use your <strong>arrow keys</strong> or <strong>swipe</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+      </p>
     </div>
   )
 }
