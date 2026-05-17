@@ -17,7 +17,7 @@ const Tile: React.FC<TileProps> = ({ tile, size }) => {
   
   const style: React.CSSProperties = {
     '--tile-size': `${100 / size}%`,
-    transform: `translate(calc(var(--tile-size) * ${col}), calc(var(--tile-size) * ${row}))`,
+    transform: `translate(${col * 100}%, ${row * 100}%)`,
   } as React.CSSProperties & { [key: string]: string };
 
   return (
