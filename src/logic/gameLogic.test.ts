@@ -1,7 +1,7 @@
 // src/logic/gameLogic.test.ts
 import { describe, it, expect } from 'vitest';
 import { initGame, createTile, getRandomEmptyPosition, moveRow, rotateGrid, moveTiles, isGameOver } from './gameLogic';
-import { Direction } from '../types';
+import type { Tile } from '../types';
 
 describe('gameLogic', () => {
   describe('createTile', () => {
@@ -48,12 +48,12 @@ describe('gameLogic', () => {
 
   describe('moveRow', () => {
     // Helper to create a row of tiles from numbers
-    const createRow = (values: (number | null)[]): (any | null)[] => {
-      return values.map((val, index) => val === null ? null : { id: index + 100, value: val, position: [0, index] });
+    const createRow = (values: (number | null)[]): (Tile | null)[] => {
+      return values.map((val, index) => val === null ? null : { id: index + 100, value: val, position: [0, index] as [number, number] });
     };
 
     // Helper to extract values from a row of tiles
-    const getValues = (row: (any | null)[]): (number | null)[] => {
+    const getValues = (row: (Tile | null)[]): (number | null)[] => {
       return row.map(tile => tile ? tile.value : null);
     };
 
@@ -95,10 +95,10 @@ describe('gameLogic', () => {
 
   describe('rotateGrid', () => {
     const createGrid = (values: (number | null)[][]) => {
-      return values.map((row, r) => row.map((val, c) => val === null ? null : { id: r * 4 + c + 1, value: val, position: [r, c] }));
+      return values.map((row, r) => row.map((val, c) => val === null ? null : { id: r * 4 + c + 1, value: val, position: [r, c] as [number, number] }));
     };
 
-    const getGridValues = (grid: (any | null)[][]) => {
+    const getGridValues = (grid: (Tile | null)[][]) => {
       return grid.map(row => row.map(tile => tile ? tile.value : null));
     };
 
@@ -255,7 +255,7 @@ describe('gameLogic', () => {
     });
 
     it('should set status to over when no more moves are possible', () => {
-      const tiles: any[] = [];
+      const tiles: Tile[] = [];
       // Create a 2x2 board that is full and no merges possible
       // 2 4
       // 8 16

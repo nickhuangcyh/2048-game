@@ -1,0 +1,42 @@
+:root {
+  --field-size: 400px;
+  --grid-gap: 15px;
+  --cell-size: 100px;
+}
+
+.game-container {
+  position: relative;
+  padding: var(--grid-gap);
+  cursor: default;
+  touch-action: none;
+  background: #bbada0;
+  border-radius: 6px;
+  width: var(--field-size);
+  height: var(--field-size);
+  box-sizing: content-box;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: var(--grid-gap);
+  width: 100%;
+  height: 100%;
+}
+
+.grid-cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border-radius: 3px;
+  background: rgba(238, 228, 218, 0.35);
+}
+
+.tile-container {
+  position: absolute;
+  top: var(--grid-gap);
+  left: var(--grid-gap);
+  right: var(--grid-gap);
+  bottom: var(--grid-gap);
+  z-index: 2;
+}

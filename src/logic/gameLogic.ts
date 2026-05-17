@@ -1,4 +1,4 @@
-import { Tile, GameState } from '../types';
+import type { Tile, GameState, Direction } from '../types';
 
 let nextTileId = 1;
 
@@ -179,8 +179,8 @@ export const moveTiles = (
     hasMoved = true;
   }
 
-  let nextScore = score + totalScoreIncrease;
-  let nextBestScore = Math.max(bestScore, nextScore);
+  const nextScore = score + totalScoreIncrease;
+  const nextBestScore = Math.max(bestScore, nextScore);
   let nextStatus = state.status;
 
   if (hasMoved) {
