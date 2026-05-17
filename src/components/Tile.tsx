@@ -18,7 +18,7 @@ const Tile: React.FC<TileProps> = ({ tile, size }) => {
   const style: React.CSSProperties = {
     '--tile-size': `${100 / size}%`,
     transform: `translate(calc(var(--tile-size) * ${col}), calc(var(--tile-size) * ${row}))`,
-  } as React.CSSProperties;
+  } as React.CSSProperties & { [key: string]: string };
 
   return (
     <div className={`tile ${tileValueClass} ${mergedClass}`} style={style}>
