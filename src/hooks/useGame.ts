@@ -1,10 +1,11 @@
-import { useReducer } from 'react';
+import { useReducer, useCallback } from 'react';
 import { initGame, moveTiles } from '../logic/gameLogic';
 import type { GameState, Direction } from '../types';
 
-type Action =
+export type Action =
   | { type: 'MOVE'; direction: Direction }
   | { type: 'RESTART' }
+  | { type: 'CONTINUE' }
   | { type: 'CHANGE_SIZE'; size: number };
 
 const LOCAL_STORAGE_KEY = '2048-best-score';
@@ -14,7 +15,7 @@ const getInitialBestScore = () => {
   return saved ? parseInt(saved, 10) : 0;
 };
 
-const gameReducer = (state: GameState, action: Action): GameState => {
+export const gameReducer = (state: GameState, action: Action): GameState => {
   switch (action.type) {
     case 'MOVE': {
       if (state.status !== 'playing') return state;
@@ -31,6 +32,9 @@ const gameReducer = (state: GameState, action: Action): GameState => {
       const bestScore = getInitialBestScore();
       return { ...initGame(state.size), bestScore };
     }
+    case 'CONTINUE': {
+      return { ...state, status: 'playing' };
+    }
     case 'CHANGE_SIZE': {
       const bestScore = getInitialBestScore();
       return { ...initGame(action.size), bestScore };
@@ -46,9 +50,21 @@ export const useGame = (initialSize: number) => {
     return { ...initGame(initialSize), bestScore };
   });
 
-  const move = (direction: Direction) => dispatch({ type: 'MOVE', direction });
-  const restart = () => dispatch({ type: 'RESTART' });
-  const changeSize = (size: number) => dispatch({ type: 'CHANGE_SIZE', size });
+  const move = useCallback((direction: Direction) => {
+    dispatch({ type: 'MOVE', direction });
+  }, []);
 
-  return { state, move, restart, changeSize };
+  const restart = useCallback(() => {
+    dispatch({ type: 'RESTART' });
+  }, []);
+
+  const continueGame = useCallback(() => {
+    dispatch({ type: 'CONTINUE' });
+  }, []);
+
+  const changeSize = useCallback((size: number) => {
+    dispatch({ type: 'CHANGE_SIZE', size });
+  }, []);
+
+  return { state, move, restart, continueGame, changeSize };
 };

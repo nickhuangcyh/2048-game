@@ -4,7 +4,7 @@ import { useMoveListeners } from './hooks/useMoveListeners'
 import './App.css'
 
 function App() {
-  const { state, move, restart, changeSize } = useGame(4);
+  const { state, move, restart, continueGame, changeSize } = useGame(4);
 
   useMoveListeners(move);
 
@@ -47,10 +47,10 @@ function App() {
         {state.status === 'won' && (
           <div className="game-message game-won">
             <p>You win!</p>
-            <button onClick={restart}>Keep going</button>
+            <button onClick={continueGame}>Keep going</button>
           </div>
         )}
-        {state.status === 'lost' && (
+        {state.status === 'over' && (
           <div className="game-message game-over">
             <p>Game over!</p>
             <button onClick={restart}>Try again</button>
